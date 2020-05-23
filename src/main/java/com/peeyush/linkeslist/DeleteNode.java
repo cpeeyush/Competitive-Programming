@@ -1,8 +1,8 @@
 package com.peeyush.linkeslist;
 
-public class InsetNodeAtSpecificPosition {
+public class DeleteNode {
 
-    static class SinglyLinkedListNode {
+    class SinglyLinkedListNode {
         int data;
         SinglyLinkedListNode next;
 
@@ -11,19 +11,14 @@ public class InsetNodeAtSpecificPosition {
         }
     }
 
-    static SinglyLinkedListNode insertNodeAtPosition(SinglyLinkedListNode head, int data, int position) {
+    static SinglyLinkedListNode deleteNode(SinglyLinkedListNode head, int position) {
 
         if (head != null) {
-
-            SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
+            SinglyLinkedListNode tmp = head;
 
             if (position == 0) {
-                newNode.next = head;
-                head = newNode;
+                head = head.next;
             } else {
-                SinglyLinkedListNode tmp = head;
-                newNode.data = data;
-
                 int count = 0;
                 while (tmp != null && count < position - 1) {
                     tmp = tmp.next;
@@ -31,8 +26,7 @@ public class InsetNodeAtSpecificPosition {
                 }
 
                 if (tmp != null) {
-                    newNode.next = tmp.next;
-                    tmp.next = newNode;
+                    tmp.next = tmp.next.next;
                 }
             }
 
@@ -41,5 +35,4 @@ public class InsetNodeAtSpecificPosition {
 
         return head;
     }
-
 }
